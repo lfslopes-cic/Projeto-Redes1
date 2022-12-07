@@ -1,3 +1,7 @@
+# Projeto de Redes I, do curso Ciência da Computação da UESC - Universidade Estadual de Santa Cruz
+    
+    Projeto de Redes I, feito por Luiz Felipe Santos e por Yuri Faustino para a matéria de Redes I.
+    
 # Projeto de jogo: Pedra, Papel e Tesoura
 
     Projeto feito em Python utilizando as bibliotecas Socket e Random do Python, utilizando o Host padrão e porta 50000 para conexão. O projeto foi criado em duas           etapas. 
