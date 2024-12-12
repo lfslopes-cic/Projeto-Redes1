@@ -1,6 +1,6 @@
 # Projeto de Redes I, do curso Ciência da Computação da UESC - Universidade Estadual de Santa Cruz
     
-    Projeto de Redes I, feito por Luiz Felipe Santos e por Yuri Faustino para a matéria de Redes I.
+    Projeto de Redes I, feito por Luiz Felipe Santos e Luciana Roncarati I.
     
 # Projeto de jogo: Pedra, Papel e Tesoura
 
