@@ -4,23 +4,22 @@
     
 # Projeto de jogo: Pedra, Papel e Tesoura
 
-    Projeto feito em Python utilizando as bibliotecas Socket e Random do Python, utilizando o Host padrão e porta 50000 para conexão. O projeto foi criado em duas etapas. 
+    Projeto feito em Python utilizando as bibliotecas Socket do Python, utilizando o Host padrão e porta 50000 para conexão. O projeto foi criado em duas etapas. 
     A primeira:
     
 # client.py
        
         - Nele temos uma conexão TCP/IP para não ter perda de pacotes;
-        - Tem 3 variaveis ("Pedra","Papel", "Tesoura"), onde o usuário seleciona uma das três e a função sendall é como um send, ou seja, ele envia a opção selecionada
-          pelo cliente para o servidor;
-        - E tem a função recv para receber o resultado do servidor.
+        - O usuário seleciona 1, 2 ou 3 para selecionar "Pedra","Papel" ou "Tesoura", e a função sendall envia a opção selecionada pelo cliente para o servidor;
+        - O cliente recebe do Servidor através da função recv a opção do seu adversário e quem ganhou dos dois, ou, caso eles empatem, o cliente recebe a mensagem de empate;
+        - O cliente também uma resposta do Servidor, indicando a desconexão do servidor, para assim encerrar a conexão do cliente.
 
     Depois temos a segunda etapa:
     
 # server.py
         
-        - Nele também temos uma conexão TCP/IP e host é um localhost;
-        - Também tem as 3 variaveis ("Pedra","Papel", "Tesoura"), onde o servidor entra com uma variavel aleatória e envia o resultado para o cliente 
-          onde temos uma limitação de interações;
+        - Nele também temos uma conexão TCP/IP e o Host é o localhost;
+        - O servidor recebe a conexão de dois clientes, que enviam suas opções entre pedra, papel e tesoura;
         - Limitados a 1024 bytes;
         - Na função servidor temos as regras do jogo (Tesoura vence Papel, Papel vence Pedra e Pedra vence Tesoura);
         - De acordo com as regras temos o ganhador e enviado para o cliente que visualiza na tela o resultado.

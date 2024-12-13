@@ -14,7 +14,7 @@ endereco = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 endereco.connect((HOST, PORT))
 resposta = '1'
 while resposta != b'0':
-    opcao = int(input("\n* Escolha uma opção:\n 1 - Pedra\n 2 - Papel\n 3 - Tesoura\n -> Opcao:\n"))
+    opcao = int(input("\n* Escolha uma opção:\n 1 - Pedra\n 2 - Papel\n 3 - Tesoura\n -> Opcão:\n"))
     if opcao == 1:
         mensagemEnvioClient = 'Pedra'
     elif opcao == 2:
@@ -23,15 +23,15 @@ while resposta != b'0':
         mensagemEnvioClient = 'Tesoura'
     else:
         mensagemEnvioClient = None
-        print("Opcao invalida")
+        print("Opcão invalida")
 
     if mensagemEnvioClient is None:
         print("Desconectando...")
         break
     endereco.sendall(str.encode(mensagemEnvioClient))
-    print("\n-> Palpite enviado pelo cliente: ", mensagemEnvioClient)
+    print("\n-> Palpite enviado por você: ", mensagemEnvioClient)
     opcaoAdversario = endereco.recv(1024)
-    print("-> Palpite enviado pelo adversario: ", opcaoAdversario.decode())
+    print("-> Palpite enviado pelo seu adversário: ", opcaoAdversario.decode())
     mensagemResultado = endereco.recv(1024)
     print(mensagemResultado.decode())
 
