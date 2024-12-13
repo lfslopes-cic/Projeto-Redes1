@@ -20,7 +20,6 @@
         
         - Nele também temos uma conexão TCP/IP e o Host é o localhost;
         - O servidor recebe a conexão de dois clientes, que enviam suas opções entre pedra, papel e tesoura;
-        - Limitados a 1024 bytes;
         - Na função servidor temos as regras do jogo (Tesoura vence Papel, Papel vence Pedra e Pedra vence Tesoura);
         - De acordo com as regras temos o ganhador e enviado para o cliente que visualiza na tela o resultado.
 
