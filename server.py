@@ -1,48 +1,64 @@
 import socket
-import random
 
-
-HOST = 'localhost' 
+HOST = '0.0.0.0'
 PORT = 50000
 
 
 Jogadas = ['Pedra', 'Papel', 'Tesoura']
 endereco= socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 endereco.bind ((HOST, PORT))
-endereco.listen(3)
+endereco.listen(2)
 
-print("Aguardando conexão de um cliente:")
+print("Aguardando conexão de um cliente:", endereco.getsockname())
 
-conn, ender = endereco.accept() 
+conn, ender = endereco.accept()
+print('Conectado com', ender)
+conn2, ender2 = endereco.accept()
+print("Conectado com", ender2)
 
-print('Connectado com', ender) 
-print("\nOs palpites do servidor são ALEATÓRIOS!\n")
 
-while True: 
-    data = conn.recv(1024) 
-   
+data = conn.recv(1024)
+data2 = conn2.recv(1024)
 
-    if not data: 
-        print("\nConexão encerrada!\n")
-
-        conn.close() 
-        break
+if not data or not data2:
+    print("\nConexão encerrada!\n")
+    conn.close()
+    conn2.close()
     
-    palpiteClient = str(data.decode()) 
-    palpiteServ = random.choice(Jogadas) 
+palpiteClient = str(data.decode())
+palpiteClient2 = str(data2.decode())
 
-    print("* O Servidor respondeu:", palpiteServ) 
+conn.send(palpiteClient2.encode())
+conn2.send(palpiteClient.encode())
 
-    if ((palpiteClient == 'Tesoura' and palpiteServ == 'Papel') or (palpiteClient == 'Pedra' and palpiteServ == 'Tesoura') or (palpiteClient == 'Papel' and palpiteServ == 'Pedra')):
-        ganhador = 'Cliente'
+if ((palpiteClient == 'Tesoura' and palpiteClient2 == 'Papel') or
+        (palpiteClient == 'Pedra' and palpiteClient2 == 'Tesoura') or
+        (palpiteClient == 'Papel' and palpiteClient2 == 'Pedra')):
+        ganhador = 'Cliente 1'
+        conn.send("---      Você é o vencedor!      ---".encode())
+        conn2.send("---         você perdeu!        ---".encode())
     
-    if ((palpiteClient == 'Papel' and palpiteServ == 'Tesoura') or (palpiteClient == 'Tesoura' and palpiteServ == 'Pedra') or (palpiteClient == 'Pedra' and palpiteServ == 'Papel')):
-        ganhador = 'Servidor'
+if ((palpiteClient == 'Papel' and palpiteClient2 == 'Tesoura') or
+        (palpiteClient == 'Tesoura' and palpiteClient2 == 'Pedra') or
+        (palpiteClient == 'Pedra' and palpiteClient2 == 'Papel')):
+        ganhador = 'Cliente 2'
+        conn2.send("---     Voce é o vencedor!      ---".encode())
+        conn.send("---          você perdeu!     ---".encode())
     
-    if (palpiteClient == palpiteServ):
-        ganhador = 'Empate'
+if (palpiteClient == palpiteClient2):
+    ganhador = '---     Empate!     ---'
+    conn.send(ganhador.encode())
+    conn2.send(ganhador.encode())
 
-   
-    result = '- Cliente: '+ str(palpiteClient) + '\n - Servidor: ' + str(palpiteServ) + '\n=> Vencedor: ' + str(ganhador) + '\n' # Concatenação dos resultados, sendo eles apresentados para o cliente
+if ganhador == "---     Empate!     ---":
+    result = "Os clientes empataram!"
+else:
+    result = '- Cliente 1: '+ str(palpiteClient) + '\n- Cliente 2: ' + str(palpiteClient2) + '\n=> Vencedor: ' + str(ganhador) + '\n' # Concatenação dos resultados, sendo eles apresentados para o cliente
 
-    conn.sendall(bytes(str(result), 'utf8'))
+resultEntregado = '0'
+
+print (result)
+conn.send(resultEntregado.encode("UTF-8"))
+conn2.send(resultEntregado.encode("UTF-8"))
+conn.close()
+conn2.close()

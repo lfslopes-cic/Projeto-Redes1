@@ -4,7 +4,7 @@
     
 # Projeto de jogo: Pedra, Papel e Tesoura
 
-    Projeto feito em Python utilizando as bibliotecas Socket e Random do Python, utilizando o Host padrão e porta 50000 para conexão. O projeto foi criado em duas           etapas. 
+    Projeto feito em Python utilizando as bibliotecas Socket e Random do Python, utilizando o Host padrão e porta 50000 para conexão. O projeto foi criado em duas etapas. 
     A primeira:
     
 # client.py
