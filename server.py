@@ -1,6 +1,6 @@
 import socket
 
-HOST = 'localhost'
+HOST = '0.0.0.0' #    IP padrão para receber conexões
 PORT = 50000
 
 
