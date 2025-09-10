@@ -1,7 +1,7 @@
 import socket
 
 
-HOST = 'localhost'
+HOST = 'localhost' #    IP da máquina no servidor
 PORT = 50000
 
 Jogadas = ['Pedra', 'Papel', 'Tesoura']
@@ -10,7 +10,7 @@ Jogadas = ['Pedra', 'Papel', 'Tesoura']
 #   utilizando o protocolo de transporte TCP.
 endereco = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-#   Conectando cliente ao endereço 127.0.0.1 e a porta 50000
+#   Conectando cliente ao endereço no HOST e a porta 50000
 endereco.connect((HOST, PORT))
 resposta = '1'
 while resposta != b'0':
