@@ -1,7 +1,8 @@
 import socket
 
+ip = input("Ip do servidor: ")
 
-HOST = 'localhost' #    IP da máquina no servidor
+HOST = ip #    IP da máquina no servidor
 PORT = 50000
 
 Jogadas = ['Pedra', 'Papel', 'Tesoura']
